@@ -19,11 +19,18 @@ public static class WarningTimerMain
     {
       if (_isWarning != value)
       {
+        // 変化時に変化をInvokeで通知
+        WarningAction?.Invoke(value);
         _isWarning = value;
       }
     }
   }
 
+  /// <summary>
+  /// "event"でカプセル化されたデリゲート
+  /// (+= か -= でしか登録/解除ができない)
+  /// </summary>
+  public static event Action<bool>? WarningAction;
 
   static WarningTimerMain()
   {

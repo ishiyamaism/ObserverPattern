@@ -11,6 +11,9 @@ class Program
         // メインタイマー起動
         WarningTimerMain.Start();
 
+        // Observerイベント登録
+        WarningTimerMain.WarningAction += WarningTimer_WarningAction;
+
         while (true)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -36,5 +39,14 @@ class Program
                     break;
             }
         }
+    }
+
+    /// <summary>
+    /// 変更時に通知が来る
+    /// </summary>
+    /// <param name="isWarning"></param>
+    private static void WarningTimer_WarningAction(bool isWarning)
+    {
+        Console.WriteLine($"{ClockNow.MiliSeconds}: {isWarning}という通知が来た");
     }
 }
