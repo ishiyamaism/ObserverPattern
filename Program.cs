@@ -8,6 +8,9 @@ class Program
         Console.WriteLine("▶ Press 1 to create timer,");
         Console.WriteLine("and the other Keys for Input Trigger, Esc to exit.");
 
+        // メインタイマー起動
+        WarningTimerMain.Start();
+
         while (true)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -21,11 +24,11 @@ class Program
             switch (keyInfo.Key)
             {
                 case ConsoleKey.Enter:
-                    Console.WriteLine("Hello, World!");
+                    Console.WriteLine("Hello, timer!");
                     break;
                 case ConsoleKey.D1:
                     Console.WriteLine("Press: 1 ... new Timer has been created!");
-                    new WarningTimer().Start();
+                    new WarningTimerSub().Start();
 
                     break;
 

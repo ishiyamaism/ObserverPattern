@@ -1,24 +1,38 @@
 namespace ObserverPattern;
 
-public class WarningTimer
+/// <summary>
+/// 一括監視用メインタイマー
+/// </summary>
+public static class WarningTimerMain
 {
-  private Timer _timer;
-  private int _timerNumber;
-  public string TimerName
+  private static Timer _timer;
+  public static string TimerName
   {
-    get { return $"{_timerNumber}個目タイマー"; }
+    get { return "メインタイマー"; }
   }
-  public bool IsWarning { get; private set; }
-  public WarningTimer()
+
+  private static bool _isWarning = false;
+  public static bool IsWarning
+  {
+    get { return _isWarning; }
+    private set
+    {
+      if (_isWarning != value)
+      {
+        _isWarning = value;
+      }
+    }
+  }
+
+
+  static WarningTimerMain()
   {
     _timer = new Timer(TimerCallback);
   }
 
-  public void Start()
+  public static void Start()
   {
-    WarningTimerCounter.Countup();
     _timer.Change(0, 5000);
-    _timerNumber = WarningTimerCounter.Count;
   }
 
   /// <summary>
@@ -26,7 +40,7 @@ public class WarningTimer
   /// (何個も存在すればそれぞれが逐一報告する)
   /// </summary>
   /// <param name="state"></param>
-  private void TimerCallback(object? state)
+  private static void TimerCallback(object? state)
   {
     var lines = File.ReadAllLines("warning.txt");
     if (lines.Length > 0)

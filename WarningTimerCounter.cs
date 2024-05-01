@@ -6,7 +6,7 @@ public static class WarningTimerCounter
 
   static WarningTimerCounter()
   {
-    Count = 0;
+    Count = 1;  // 最初にメインタイマーがあるとする
   }
   public static void Countup()
   {
