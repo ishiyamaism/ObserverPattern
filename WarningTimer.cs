@@ -21,6 +21,11 @@ public class WarningTimer
     _timerNumber = WarningTimerCounter.Count;
   }
 
+  /// <summary>
+  /// 普通の実装：タイマーが定期的に監視する
+  /// (何個も存在すればそれぞれが逐一報告する)
+  /// </summary>
+  /// <param name="state"></param>
   private void TimerCallback(object? state)
   {
     var lines = File.ReadAllLines("warning.txt");
