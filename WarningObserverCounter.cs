@@ -1,10 +1,10 @@
 namespace ObserverPattern;
 
-public static class WarningTimerCounter
+public static class WarningObserverCounter
 {
   public static int Count { get; private set; }
 
-  static WarningTimerCounter()
+  static WarningObserverCounter()
   {
     Count = 1;  // 最初にメインタイマーがあるとする
   }

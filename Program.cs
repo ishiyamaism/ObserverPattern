@@ -5,14 +5,14 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("▶ Press Enter to say hello,");
-        Console.WriteLine("▶ Press 1 to create timer,");
+        Console.WriteLine("▶ Press 1 to create observer,");
         Console.WriteLine("and the other Keys for Input Trigger, Esc to exit.");
 
         // メインタイマー起動
         WarningTimerMain.Start();
 
         // Observerイベント登録
-        WarningTimerMain.WarningAction += WarningTimer_WarningAction;
+        WarningTimerMain.WarningAction += WarningTimerMain_WarningAction;
 
         while (true)
         {
@@ -30,8 +30,8 @@ class Program
                     Console.WriteLine("Hello, timer!");
                     break;
                 case ConsoleKey.D1:
-                    Console.WriteLine("Press: 1 ... new Timer has been created!");
-                    new WarningTimerSub().Start();
+                    Console.WriteLine("Press: 1 ... new Observer has been created!");
+                    new WarningObserver().Start();
 
                     break;
 
@@ -45,8 +45,8 @@ class Program
     /// 変更時に通知が来る
     /// </summary>
     /// <param name="isWarning"></param>
-    private static void WarningTimer_WarningAction(bool isWarning)
+    private static void WarningTimerMain_WarningAction(bool isWarning)
     {
-        Console.WriteLine($"{ClockNow.MiliSeconds}: {isWarning}という通知が来た");
+        Console.WriteLine($"{ClockNow.MiliSeconds}: {isWarning}という通知がメインスレッドに来た");
     }
 }
